@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use super::ast::*;
 use std::cmp::Ordering;
 use std::fs::File;
@@ -26,7 +27,7 @@ fn trim(line: &mut String) -> usize {
 }
 
 impl Ast {
-    pub fn from_t_expression(&self, file_path: &str) {
+    pub fn from_t_expression(&mut self, file_path: &str) {
         // File hosts must exist in current path before this produces output
         let lines = read_lines(file_path);
         if lines.is_err() {
@@ -60,6 +61,16 @@ impl Ast {
             } else {
                 panic!("Error reading line")
             }
+        }
+    }
+    pub fn to_t_expression(&self) {
+        let mut increments: HashMap<usize, usize> = HashMap::new();
+        increments.insert(0, 0);
+        for edge in self.edges.iter() {
+            let inc = increments[&edge.0] + 1;
+            let spaces = (0..(4 * inc) - 4).map(|_| " ").collect::<String>();
+            increments.insert(edge.1, inc);
+            println!("{}{}", spaces, self.nodes[&edge.1]);
         }
     }
 }
