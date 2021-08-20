@@ -35,7 +35,12 @@ impl Ast {
             } else if indent != 0 {
                 let new_lvl = spaces / indent;
                 match new_lvl.cmp(&lvl) {
-                    Ordering::Less => self.decrement(),
+                    Ordering::Less => {
+                        println!("decrement by {}", lvl - new_lvl);
+                        for _ in 0..(lvl - new_lvl) {
+                            self.decrement();
+                        }
+                    },
                     Ordering::Greater => self.increment(),
                     _ => {}
                 }

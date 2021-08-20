@@ -10,7 +10,7 @@ impl Ast {
             for c in line.trim().chars() {
                 if c == '(' {
                     if parentheses != 0 && !code.is_empty() {
-                        self.insert(&code.trim());
+                        self.insert(code.trim());
                         code.drain(..);
                         self.increment();
                     }
@@ -18,7 +18,7 @@ impl Ast {
                 } else if c == ')' {
                     parentheses -= 1;
                     if !code.is_empty() {
-                        self.insert(&code.trim());
+                        self.insert(code.trim());
                         code.drain(..);
                     }
                     self.decrement();
