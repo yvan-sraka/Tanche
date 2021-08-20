@@ -44,14 +44,18 @@ impl Ast {
             self.insert(&line);
         }
     }
-    pub fn to_t_expression(&self) {
+    pub fn to_t_expression(&self) -> String {
+        let mut ret = String::new();
         let mut increments: HashMap<usize, usize> = HashMap::new();
         increments.insert(0, 0);
         for edge in self.edges.iter() {
             let inc = increments[&edge.0] + 1;
             let spaces = (0..(4 * inc) - 4).map(|_| " ").collect::<String>();
             increments.insert(edge.1, inc);
-            println!("{}{}", spaces, self.nodes[&edge.1]);
+            ret.push_str(&spaces);
+            ret.push_str(&self.nodes[&edge.1]);
+            ret.push('\n');
         }
+        ret
     }
 }

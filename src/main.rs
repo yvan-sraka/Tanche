@@ -16,6 +16,11 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
+fn main() {
+    sample_t_expression();
+    sample_s_expression();
+}
+
 fn sample_t_expression() {
     let mut ast = Ast::new();
     let file_path = "test_p.walm";
@@ -25,7 +30,7 @@ fn sample_t_expression() {
     };
     ast.from_t_expression(lines);
     println!("{}", ast);
-    ast.to_t_expression();
+    println!("{}", ast.to_t_expression());
 }
 
 fn sample_s_expression() {
@@ -37,10 +42,10 @@ fn sample_s_expression() {
     };
     ast.from_s_expression(lines);
     println!("{}", ast);
-    ast.to_s_expression();
+    println!("{}", ast.to_s_expression());
 }
 
-fn main() {
-    sample_t_expression();
-    sample_s_expression();
-}
+//#[cfg(test)]
+//mod test {
+//    
+//}
