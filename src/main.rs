@@ -33,14 +33,14 @@ fn main() {
 
 fn sample_t_expression() {
     let mut ast = Ast::new();
-    ast.from_t_expression(lines_iter_in("t_expression.walm"));
+    ast.from_t_expression(lines_iter_in("t_expression.wlan"));
     println!("{}", ast);
     println!("{}", ast.to_t_expression());
 }
 
 fn sample_s_expression() {
     let mut ast = Ast::new();
-    ast.from_s_expression(lines_iter_in("s_expression.walm"));
+    ast.from_s_expression(lines_iter_in("s_expression.wlan"));
     println!("{}", ast);
     println!("{}", ast.to_s_expression());
 }
@@ -72,7 +72,7 @@ mod test {
         expected.insert("SDLApp.run-with-callbacks &app SDLApp.quit-on-esc tick draw state");
 
         let mut ast = Ast::new();
-        ast.from_t_expression(lines_iter_in("./tests/basic_t.walm"));
+        ast.from_t_expression(lines_iter_in("./tests/basic_t.wlan"));
         for i in 1..9 {
             assert_eq!(ast.nodes[&i], expected.nodes[&i]);
         }
@@ -111,7 +111,7 @@ mod test {
         expected.insert("n"); // 14
 
         let mut ast = Ast::new();
-        ast.from_t_expression(lines_iter_in("./tests/chain_t.walm"));
+        ast.from_t_expression(lines_iter_in("./tests/chain_t.wlan"));
         for i in 1..14 {
             assert_eq!(ast.nodes[&i], expected.nodes[&i]);
         }
@@ -125,6 +125,6 @@ mod test {
     #[test]
     fn from_t_expression_medium() {
         let mut ast = Ast::new();
-        ast.from_t_expression(lines_iter_in("./tests/medium_t.walm"));
+        ast.from_t_expression(lines_iter_in("./tests/medium_t.wlan"));
     }
 }
